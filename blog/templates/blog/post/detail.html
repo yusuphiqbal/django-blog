@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<h4 class="mb-0">{{ post.title }}</h4>
+<small class="text-muted">Published {{ post.publish }} by {{ post.author }}</small>
+<p>{{ post.body|linebreaks }}</p>
+{% endblock %}

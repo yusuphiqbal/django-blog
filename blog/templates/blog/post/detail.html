@@ -6,4 +6,5 @@
 <h4 class="mb-0">{{ post.title }}</h4>
 <small class="text-muted">Published {{ post.publish }} by {{ post.author }}</small>
 <p>{{ post.body|linebreaks }}</p>
+<p><a href="{% url 'blog:post_share' post.id %}" class="btn btn-primary">Share this post</a></p>
 {% endblock %}

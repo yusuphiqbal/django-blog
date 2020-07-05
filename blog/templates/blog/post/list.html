@@ -1,5 +1,7 @@
 {% extends 'blog/base.html' %}
 
+{% load blog_tags %}
+
 {% block title %}Blog Posts{% endblock %}
 
 {% block content %}
@@ -15,7 +17,7 @@
                 <li><a href="{% url 'blog:post_list_by_tag' tag.slug %}"><span class="badge badge-dark mx-1">{{ tag.name }}</span></a></li>
             {% endfor %}
         </ul>
-        <p>{{ post.body|truncatewords:30|linebreaks }}</p>
+        <p>{{ post.body|markdown|truncatewords_html:30 }}</p>
         <hr>
     {% endfor %}
     {% include 'pagination.html' with page=posts %}

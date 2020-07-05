@@ -7,4 +7,37 @@
 <small class="text-muted">Published {{ post.publish }} by {{ post.author }}</small>
 <p>{{ post.body|linebreaks }}</p>
 <p><a href="{% url 'blog:post_share' post.id %}" class="btn btn-primary">Share this post</a></p>
+{% with comments.count as total_comments %}
+    <h5 class="my-5">{{ total_comments }} comment{{ total_comments|pluralize }}</h5>
+{% endwith %}
+
+<ul class="list-group mb-5 list-group-flush">
+    {% for comment in comments %}
+        <li class="list-group-item">
+            <small class="text-muted">Comment {{ forloop.counter }} by {{ comment.name }}</small>
+            <p>{{ comment.body }}</p>
+        </li>
+    {% empty %}
+        <li class="list-group-item">There are no comments yet.</li>
+    {% endfor %}
+</ul>
+
+{% if new_comment %}
+    <h5>Your comment has been added.</h5>
+{% else %}
+    <h5>Add new comment</h5>
+    <div class="card card-body mb-5">
+        <form method="post">
+            {% for field in comment_form %}
+            <div class="form-group">
+                {{ field.label_tag }}
+                {{ field }}
+            </div>
+        {% endfor %}
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+    </div>
+{% endif %}
+
 {% endblock %}

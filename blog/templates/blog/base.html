@@ -11,6 +11,13 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white mb-5 border-bottom">
         <div class="container">
             <a href="{% url 'blog:post_list' %}" class="navbar-brand">Django Blog</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="{% url 'blog:post_search' %}" class="nav-link">Search</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
     <div class="container">
